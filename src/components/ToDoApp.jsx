@@ -29,6 +29,11 @@ const ToDoApp = () => {
     localStorage.setItem("localTaskList", JSON.stringify(updated))
 }
 
+const handleDeleteTaskList = () =>{
+  setTaskList([]);
+  localStorage.removeItem("localTaskList")
+}
+
   return (
     <div className='main-container'>
       <h1 className='title'>
@@ -75,6 +80,13 @@ const ToDoApp = () => {
           )
         })}
       </div>
+      {!taskList.length ? null : (
+        <div className='clear-button'>
+            <button onClick={()=>handleDeleteTaskList()}>
+              Delete all Tasks
+            </button>
+        </div>
+      )}
     </div>
   )
 }
