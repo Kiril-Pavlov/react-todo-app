@@ -23,6 +23,12 @@ const ToDoApp = () => {
     }
   }
 
+  const handleDeleteTask = (task)=>{
+    const updated = taskList.filter((t)=>t.id !== task.id);
+    setTaskList(updated);
+    localStorage.setItem("localTaskList", JSON.stringify(updated))
+}
+
   return (
     <div className='main-container'>
       <h1 className='title'>
@@ -56,15 +62,15 @@ const ToDoApp = () => {
               <div className='task-title'>
                 {task.title}
               </div>
-              <div className='complete-button'>
+              <button className='complete-button'>
                 <AiFillCheckCircle />
-              </div>
-              <div className='edit-button'>
+              </button>
+              <button className='edit-button'>
                 <AiFillEdit />
-              </div>
-              <div className='delete-button'>
+              </button>
+              <button className='delete-button' onClick={()=>handleDeleteTask(task)}>
                 <AiFillDelete />
-              </div>
+              </button>
             </div>
           )
         })}

@@ -13,6 +13,7 @@
     color: brown;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 20px;
+    font-size: 2.5rem;
 }
 
 .add-task-container{
@@ -39,7 +40,7 @@
     border: 2px solid transparent;
     font-weight: 600;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    transition: all .5s;
+    transition: all .75s;
 }
 
 .add-task-button:hover{
@@ -91,9 +92,14 @@
     border-radius: 20px;
     background-color: transparent;
     color: white;
+    padding: 1px;
+    border-color: transparent;
+    transition: all .5s;
+    font-size: 1.2rem;
 }
 
 .complete-button:hover, .edit-button:hover,.delete-button:hover{
-    color: burlywood;
+    color: rgb(217, 164, 93);
+    cursor: pointer;
 }
 
