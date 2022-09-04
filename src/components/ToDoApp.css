@@ -1,9 +1,50 @@
 .main-container{
     width: 500px;
+    min-height: 500px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius:20px;
     border: 2px solid rgb(133, 57, 57);
-    padding: 30px;
     margin: 30px auto;
     box-shadow: -10px 10px 20px black;
+}
+
+.title{
+    text-align: center;
+    color: brown;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 20px;
+}
+
+.add-task-container{
+    background-color: brown;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+}
+
+.task-input{
+    border-radius: 20px;
+    font-size: 1rem;
+    padding: 3px 10px;
+}
+
+.add-task-button{
+    background-color: white;
+    border-radius: 20px;
+    font-size: 1rem;
+    padding: 3px 10px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    transition: all .5s;
+}
+
+.add-task-button:hover{
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    padding: 3px 20px;
 }
