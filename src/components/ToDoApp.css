@@ -48,3 +48,52 @@
     color: white;
     padding: 3px 20px;
 }
+
+.task-counter{
+    padding: 2px 5px;
+    font-style: italic;
+    text-align: center;
+    background-color: #303030;
+    color: white;
+    width: 150px;
+    border-radius: 0px 0px 15px 15px;
+    margin: 0px auto;
+    font-size: 0.8rem;
+}
+
+.task-list-container{
+    border-top:3px solid #a52a2a;
+    margin: 5px auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 5px;
+}
+
+.task-item{
+    background-color: brown;
+    padding: 5px 10px;
+    display: grid;
+    grid-template-columns: 10fr 1fr 1fr 1fr;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    
+}
+
+.task-title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: left;
+}
+
+.complete-button, .edit-button, .delete-button {
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+}
+
+.complete-button:hover, .edit-button:hover,.delete-button:hover{
+    color: burlywood;
+}
+
