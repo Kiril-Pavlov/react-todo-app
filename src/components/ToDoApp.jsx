@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
-import { AiFillCheckCircle, AiFillEdit ,AiFillDelete } from "react-icons/ai";
+import { AiFillCheckCircle, AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 import "./ToDoApp.css"
 
@@ -10,13 +10,15 @@ const ToDoApp = () => {
   const [taskInput, setTaskInput] = useState("");
   const [taskList, setTaskList] = useState([]);
 
-  useEffect(()=>{
-    if(localStorage.getItem("localTaskList")){
+  //get data from localStorage after reloading the page
+  useEffect(() => {
+    if (localStorage.getItem("localTaskList")) {
       let localData = JSON.parse(localStorage.getItem("localTaskList"));
       setTaskList(localData)
     }
-  },[])
+  }, [])
 
+  //add task to taskList
   const addTask = (e) => {
     if (taskInput) {
       let newTask = {
@@ -32,29 +34,31 @@ const ToDoApp = () => {
     }
   }
 
-  const handleDeleteTask = (task)=>{
-    const updated = taskList.filter((t)=>t.id !== task.id);
+  //delete one task by id
+  const handleDeleteTask = (task) => {
+    const updated = taskList.filter((t) => t.id !== task.id);
     setTaskList(updated);
     localStorage.setItem("localTaskList", JSON.stringify(updated))
-}
+  }
 
-const toggleTaskStatus = (id) => {
-  
-   let modifiedTasks = taskList.map((task) => {
-    if(task.id === id){
-      return ({...task, status: !task.status})
-    }
-    return task
-   })
-   setTaskList(modifiedTasks);
-   localStorage.setItem("localTaskList", JSON.stringify(modifiedTasks))
-   
-}
-console.log(taskList)
-const handleDeleteTaskList = () =>{
-  setTaskList([]);
-  localStorage.removeItem("localTaskList")
-}
+  //change the status of a task (completed or not)
+  const toggleTaskStatus = (id) => {
+    let modifiedTasks = taskList.map((task) => {
+      if (task.id === id) {
+        return ({ ...task, status: !task.status })
+      }
+      return task
+    })
+    setTaskList(modifiedTasks);
+    localStorage.setItem("localTaskList", JSON.stringify(modifiedTasks))
+
+  }
+
+  //delete all tasks
+  const handleDeleteTaskList = () => {
+    setTaskList([]);
+    localStorage.removeItem("localTaskList")
+  }
 
   return (
     <div className='main-container'>
@@ -89,24 +93,26 @@ const handleDeleteTaskList = () =>{
               <div className={task.status ? "task-title completed" : "task-title"}>
                 {task.title}
               </div>
-              <button className='complete-button' onClick={(e)=>toggleTaskStatus(task.id)}>
+              <button className='complete-button' onClick={() => toggleTaskStatus(task.id)}>
                 <AiFillCheckCircle />
               </button>
-              <button className='edit-button'>
-                <AiFillEdit />
-              </button>
-              <button className='delete-button' onClick={()=>handleDeleteTask(task)}>
+              <button className='delete-button' onClick={() => handleDeleteTask(task)}>
                 <AiFillDelete />
               </button>
+              {task.status ? null : (
+                <button className='edit-button'>
+                  <AiFillEdit />
+                </button>
+              )}
             </div>
           )
         })}
       </div>
       {!taskList.length ? null : (
         <div className='clear-button'>
-            <button onClick={()=>handleDeleteTaskList()}>
-              Delete all Tasks
-            </button>
+          <button onClick={() => handleDeleteTaskList()}>
+            Delete all Tasks
+          </button>
         </div>
       )}
     </div>
