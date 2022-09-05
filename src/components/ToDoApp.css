@@ -6,6 +6,7 @@
     border: 2px solid rgb(133, 57, 57);
     margin: 30px auto;
     box-shadow: -10px 10px 20px black;
+    position: relative;
 }
 
 .title{
@@ -64,7 +65,7 @@
 
 .task-list-container{
     border-top:3px solid #a52a2a;
-    margin: 5px auto;
+    margin: 5px auto 50px auto;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -88,6 +89,11 @@
     text-align: left;
 }
 
+.completed{
+    text-decoration: line-through;
+    color: grey;
+}
+
 .complete-button, .edit-button, .delete-button {
     border-radius: 20px;
     background-color: transparent;
@@ -98,8 +104,37 @@
     font-size: 1.2rem;
 }
 
+
 .complete-button:hover, .edit-button:hover,.delete-button:hover{
     color: rgb(217, 164, 93);
     cursor: pointer;
+}
+
+.clear-button{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+.clear-button button{
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    border-radius: 20px;
+    font-size: 1rem;
+    padding: 3px 10px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    transition: all .75s;
+    display: block;
+    margin: auto;
+}
+
+.clear-button button:hover{
+    border: 2px solid brown;
+    color: brown;
+    background-color: white;
+    padding: 3px 30px;
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useState } from 'react'
 import { AiFillCheckCircle, AiFillEdit ,AiFillDelete } from "react-icons/ai";
 
@@ -9,11 +10,19 @@ const ToDoApp = () => {
   const [taskInput, setTaskInput] = useState("");
   const [taskList, setTaskList] = useState([]);
 
+  useEffect(()=>{
+    if(localStorage.getItem("localTaskList")){
+      let localData = JSON.parse(localStorage.getItem("localTaskList"));
+      setTaskList(localData)
+    }
+  },[])
+
   const addTask = (e) => {
     if (taskInput) {
       let newTask = {
         id: new Date().getTime().toString(),
-        title: taskInput
+        title: taskInput,
+        status: false
       }
       console.log(taskList)
       setTaskList([...taskList, newTask]);
@@ -29,6 +38,19 @@ const ToDoApp = () => {
     localStorage.setItem("localTaskList", JSON.stringify(updated))
 }
 
+const toggleTaskStatus = (id) => {
+  
+   let modifiedTasks = taskList.map((task) => {
+    if(task.id === id){
+      return ({...task, status: !task.status})
+    }
+    return task
+   })
+   setTaskList(modifiedTasks);
+   localStorage.setItem("localTaskList", JSON.stringify(modifiedTasks))
+   
+}
+console.log(taskList)
 const handleDeleteTaskList = () =>{
   setTaskList([]);
   localStorage.removeItem("localTaskList")
@@ -64,10 +86,10 @@ const handleDeleteTaskList = () =>{
         {taskList.map((task) => {
           return (
             <div className='task-item' key={task.id}>
-              <div className='task-title'>
+              <div className={task.status ? "task-title completed" : "task-title"}>
                 {task.title}
               </div>
-              <button className='complete-button'>
+              <button className='complete-button' onClick={(e)=>toggleTaskStatus(task.id)}>
                 <AiFillCheckCircle />
               </button>
               <button className='edit-button'>
