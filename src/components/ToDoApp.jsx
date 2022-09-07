@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { AiFillCheckCircle, AiFillEdit, AiFillDelete } from "react-icons/ai";
+import Popup from './Popup';
 
 import "./ToDoApp.css"
 
@@ -9,6 +10,9 @@ const ToDoApp = () => {
 
   const [taskInput, setTaskInput] = useState("");
   const [taskList, setTaskList] = useState([]);
+
+  const [isOpened,setIsOpened] = useState(false)
+  const [task, setTask] = useState("")
 
   //get data from localStorage after reloading the page
   useEffect(() => {
@@ -60,6 +64,11 @@ const ToDoApp = () => {
     localStorage.removeItem("localTaskList")
   }
 
+  const handlePopupOpened = (task) => {
+    setIsOpened(true);
+    setTask(task)
+  }
+
   return (
     <div className='main-container'>
       <h1 className='title'>
@@ -100,7 +109,7 @@ const ToDoApp = () => {
                 <AiFillDelete />
               </button>
               {task.status ? null : (
-                <button className='edit-button'>
+                <button className='edit-button' onClick={() => handlePopupOpened(task)}>
                   <AiFillEdit />
                 </button>
               )}
@@ -115,6 +124,12 @@ const ToDoApp = () => {
           </button>
         </div>
       )}
+      <Popup 
+        popupState={isOpened} 
+        setPopupState={()=>setIsOpened(false)} 
+        task={task} 
+        taskList = {taskList} 
+        setTaskList={setTaskList}/>
     </div>
   )
 }

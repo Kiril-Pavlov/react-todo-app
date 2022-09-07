@@ -138,3 +138,9 @@
     padding: 3px 30px;
 }
 
+@media screen and (max-width:500px) {
+    .main-container{
+        width: 400px;
+    }
+}
+
