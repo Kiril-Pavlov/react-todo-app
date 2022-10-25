@@ -1,8 +1,8 @@
-### Durotan Site Clone Project
+### ToDo App
 
 # 
 
-> Clone a website design for a Bookmark App.
+> Simple Todo App.
 
 ![screenshot](https://github.com/Kiril-Pavlov/react-todo-app/blob/main/todo-app-screenshot.png?raw=true)
 
